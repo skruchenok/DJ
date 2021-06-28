@@ -9,6 +9,11 @@ class User(AbstractUser):
 class ToDo(models.Model):
     text = models.TextField()
     status = models.BooleanField(default=False)
+    user = models.ForeignKey(
+        'core.user',
+        on_delete=models.CASCADE,
+        related_name='todos'
+    )
 
     def __str__(self):
         return self.text[:50]
